@@ -167,3 +167,4 @@ Security/MarshalLoad:
 Style/NumericLiterals:
   Exclude:
     - 'spec/jwt_spec.rb'
+    - 'spec/django_spec.rb'
