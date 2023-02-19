@@ -57,6 +57,8 @@ module Ronin
         # @param [String] hmac
         #   The HMAC for the serialized and Base64 encoded session cookie.
         #
+        # @api private
+        #
         def initialize(params,hmac)
           super(params)
           @hmac = hmac
