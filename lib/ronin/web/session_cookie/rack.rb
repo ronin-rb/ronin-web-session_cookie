@@ -61,6 +61,7 @@ module Ronin
         #
         def initialize(params,hmac)
           super(params)
+
           @hmac = hmac
         end
 

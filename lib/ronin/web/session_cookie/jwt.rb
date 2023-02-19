@@ -77,7 +77,9 @@ module Ronin
         #
         def initialize(header,payload,hmac)
           @header = header
+
           super(payload)
+
           @hmac = hmac
         end
 
