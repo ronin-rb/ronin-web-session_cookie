@@ -33,7 +33,6 @@ module Ronin
       #
       #     Ronin::Web::SessionCookie.parse('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c')
       #     # =>
-      #     # =>
       #     # #<Ronin::Web::SessionCookie::JWT:0x00007f18d5a45e58
       #     #  @header={"alg"=>"HS256", "typ"=>"JWT"},
       #     #  @hmac=
