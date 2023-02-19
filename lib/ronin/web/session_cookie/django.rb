@@ -66,7 +66,7 @@ module Ronin
         REGEXP = /\A(?:sessionid=)?#{URL_SAFE_BASE64_REGEXP}:#{URL_SAFE_BASE64_REGEXP}:#{URL_SAFE_BASE64_REGEXP}\z/
 
         #
-        # Identifies if the cookie is a Djanog session cookie.
+        # Identifies if the cookie is a Django session cookie.
         #
         # @param [String] string
         #   The raw session cookie value.
