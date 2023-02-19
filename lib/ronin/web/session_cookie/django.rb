@@ -56,6 +56,8 @@ module Ronin
         # @param [String] hmac
         #   The SHA256 HMAC of the Base64 encoded serialized  {#params}.
         #
+        # @api private
+        #
         def initialize(params,salt,hmac)
           super(params)
 
