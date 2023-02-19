@@ -50,7 +50,8 @@ module Ronin
         # @param [Hash{String => Object}] params
         #   The deserialized params of the session cookie.
         #
-        # @param [String] salt
+        # @param [Integer] salt
+        #   The Base62 decoded timestamp that is used to salt the HMAC.
         #
         # @param [String] hmac
         #   The SHA256 HMAC of the Base64 encoded serialized  {#params}.
