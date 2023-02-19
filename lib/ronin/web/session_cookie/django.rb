@@ -26,6 +26,30 @@ module Ronin
   module Web
     module SessionCookie
       #
+      # Represents a Django signed session cookie (JSON or Pickle serialized).
+      #
+      # ## Examples
+      #
+      # Parse a Django JSON session cookie:
+      #
+      #     Ronin::Web::SessionCookie.parse('sessionid=eyJmb28iOiJiYXIifQ:1pQcTx:UufiSnuPIjNs7zOAJS0UpqnyvRt7KET7BVes0I8LYbA')
+      #     # => 
+      #     # #<Ronin::Web::SessionCookie::Django:0x00007f29bb9c6b70
+      #     #  @hmac=
+      #     #   "R\xE7\xE2J{\x8F\"3l\xEF3\x80%-\x14\xA6\xA9\xF2\xBD\e{(D\xFB\x05W\xAC\xD0\x8F\va\xB0",
+      #     #  @params={"foo"=>"bar"},
+      #     #  @salt=1676070425>
+      #
+      # Parse a Django Pickled session cookie:
+      #
+      #     Ronin::Web::SessionCookie.parse('sessionid=gAWVEAAAAAAAAAB9lIwDZm9vlIwDYmFylHMu:1pQcay:RjaK8DKN4xXQ_APIXXWEyFS08Q-PGo6UlRBFpedFk9M')
+      #     # =>
+      #     # #<Ronin::Web::SessionCookie::Django:0x00007f29b7aa6dc8
+      #     #  @hmac=
+      #     #   "F6\x8A\xF02\x8D\xE3\x15\xD0\xFC\x03\xC8]u\x84\xC8T\xB4\xF1\x0F\x8F\x1A\x8E\x94\x95\x10E\xA5\xE7E\x93\xD3",
+      #     #  @params={"foo"=>"bar"},
+      #     #  @salt=1676070860>
+      #
       # @see https://docs.djangoproject.com/en/4.1/topics/http/sessions/#using-cookie-based-sessions
       #
       class Django < Cookie
