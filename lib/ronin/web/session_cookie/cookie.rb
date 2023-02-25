@@ -1,6 +1,9 @@
 module Ronin
   module Web
     module SessionCookie
+      #
+      # Base class for all session cookie classes.
+      #
       class Cookie
 
         include Enumerable
