@@ -33,7 +33,7 @@ module Ronin
       # Parse a Django JSON session cookie:
       #
       #     Ronin::Web::SessionCookie.parse('sessionid=eyJmb28iOiJiYXIifQ:1pQcTx:UufiSnuPIjNs7zOAJS0UpqnyvRt7KET7BVes0I8LYbA')
-      #     # => 
+      #     # =>
       #     # #<Ronin::Web::SessionCookie::Django:0x00007f29bb9c6b70
       #     #  @hmac=
       #     #   "R\xE7\xE2J{\x8F\"3l\xEF3\x80%-\x14\xA6\xA9\xF2\xBD\e{(D\xFB\x05W\xAC\xD0\x8F\va\xB0",
@@ -105,7 +105,7 @@ module Ronin
         # @api public
         #
         def self.identify?(string)
-          string=~ REGEXP
+          string =~ REGEXP
         end
 
         #

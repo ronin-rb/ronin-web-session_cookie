@@ -27,10 +27,10 @@ module Ronin
         include Enumerable
 
         # Regular expression for a URI decoded Base64 blob.
-        STRICT_BASE64_REGEXP = /(?:[A-Za-z0-9+\/]{4})+(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?|[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=/
+        STRICT_BASE64_REGEXP = %r{(?:[A-Za-z0-9+/]{4})+(?:[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=)?|[A-Za-z0-9+/]{2}==|[A-Za-z0-9+/]{3}=}
 
         # Regular expression for a URI escaped Base64 blob.
-        URI_ENCODED_BASE64_REGEXP = /(?:[A-Za-z0-9+\/]{4})+(?:[A-Za-z0-9+\/]{2}%3D%3D|[A-Za-z0-9+\/]{3}%3D)?|[A-Za-z0-9+\/]{2}%3D|[A-Za-z0-9+\/]{3}%3D/
+        URI_ENCODED_BASE64_REGEXP = %r{(?:[A-Za-z0-9+/]{4})+(?:[A-Za-z0-9+/]{2}%3D%3D|[A-Za-z0-9+/]{3}%3D)?|[A-Za-z0-9+/]{2}%3D|[A-Za-z0-9+/]{3}%3D}
 
         # Regular expression for a URL-safe encoded Base64 blob.
         URL_SAFE_BASE64_REGEXP = /[A-Za-z0-9_-]{2,}/

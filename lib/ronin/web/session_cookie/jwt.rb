@@ -85,7 +85,7 @@ module Ronin
         # Regular expression to match JWT session cookies.
         REGEXP = /\A(Bearer )?#{URL_SAFE_BASE64_REGEXP}\.#{URL_SAFE_BASE64_REGEXP}\.#{URL_SAFE_BASE64_REGEXP}\z/
 
-        # 
+        #
         # Identifies whether the string is a JWT session cookie.
         #
         # @param [String] string
