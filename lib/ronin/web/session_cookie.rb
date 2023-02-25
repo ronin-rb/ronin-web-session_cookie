@@ -22,6 +22,9 @@ require 'ronin/web/session_cookie/jwt'
 
 module Ronin
   module Web
+    #
+    # Namespace for `ronin-web-session_cookie`.
+    #
     module SessionCookie
       # All session cookie classes.
       #
