@@ -155,8 +155,10 @@ module Ronin
         #
         def self.extract(response)
           if (set_cookie = response['Set-Cookie'])
-            if (match = set_cookie.match(REGEXP))
-              return parse(match[0])
+            cookie = set_cookie.split(';',2).first
+
+            if identify?(cookie)
+              return parse(cookie)
             end
           end
         end

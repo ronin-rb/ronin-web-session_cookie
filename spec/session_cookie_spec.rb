@@ -330,7 +330,7 @@ describe Ronin::Web::SessionCookie do
     subject { described_class.extract(response) }
 
     context "when the HTTP response contains an 'Set-Cookie' header" do
-      before { response['Set-Cookie'] = cookie }
+      before { response['Set-Cookie'] = "#{cookie}; path=/; HttpOnly" }
 
       context "and it contains '<base64>:<base64>:<base64>'" do
         context "and when the session cookie is a JSON serialized session cookie" do
