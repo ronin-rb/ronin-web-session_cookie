@@ -19,6 +19,7 @@
 require 'ronin/web/session_cookie/cookie'
 
 require 'base64'
+require 'delegate'
 require 'rack/session/cookie'
 
 module Ronin
