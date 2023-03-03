@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'ronin/web/session_cookie/rack'
 
+require 'net/http'
+
 describe Ronin::Web::SessionCookie::Rack do
   let(:params) do
     {
@@ -159,6 +161,106 @@ describe Ronin::Web::SessionCookie::Rack do
 
       it "must parse the SHA1 HMAC" do
         expect(subject.hmac).to eq(hmac)
+      end
+    end
+  end
+
+  describe ".extract" do
+    let(:response) { Net::HTTPSuccess.new('1.1', '200', 'OK') }
+
+    subject { described_class.extract(response) }
+
+    context "when the HTTP response contains an 'Set-Cookie' header" do
+      before { response['Set-Cookie'] = cookie }
+
+      context "and it contains '<base64>--<sha1>'" do
+        let(:cookie) do
+          'BAh7CEkiD3Nlc3Npb25faWQGOgZFVG86HVJhY2s6OlNlc3Npb246OlNlc3Npb25JZAY6D0BwdWJsaWNfaWRJIkUyYWJkZTdkM2I0YTMxNDE5OThiYmMyYTE0YjFmMTZlNTNlMWMzYWJlYzhiYzc4ZjVhMGFlMGUwODJmMjJlZGIxBjsARkkiCWNzcmYGOwBGSSIxNHY1TmRCMGRVaklXdjhzR3J1b2ZhM2xwNHQyVGp5ZHptckQycjJRWXpIZz0GOwBGSSINdHJhY2tpbmcGOwBGewZJIhRIVFRQX1VTRVJfQUdFTlQGOwBUSSItOTkxNzUyMWYzN2M4ODJkNDIyMzhmYmI5Yzg4MzFmMWVmNTAwNGQyYwY7AEY=--02184e43850f38a46c8f22ffb49f7f22be58e272'
+        end
+
+        it "must return a #{described_class} object" do
+          expect(subject).to be_kind_of(described_class)
+        end
+
+        it "must decode and deserialize the session params" do
+          expect(subject.params.keys).to eq(params.keys)
+          expect(subject.params['session_id'].public_id).to eq(params['session_id'].public_id)
+          expect(subject.params['csrf']).to eq(params['csrf'])
+          expect(subject.params['tracking']).to eq(params['tracking'])
+        end
+
+        it "must parse the SHA1 HMAC" do
+          expect(subject.hmac).to eq(hmac)
+        end
+      end
+
+      context "and it contains '<uri-encoded-base64>--<sha1>'" do
+        let(:cookie) do
+          'BAh7CEkiD3Nlc3Npb25faWQGOgZFVG86HVJhY2s6OlNlc3Npb246OlNlc3Npb25JZAY6D0BwdWJsaWNfaWRJIkUyYWJkZTdkM2I0YTMxNDE5OThiYmMyYTE0YjFmMTZlNTNlMWMzYWJlYzhiYzc4ZjVhMGFlMGUwODJmMjJlZGIxBjsARkkiCWNzcmYGOwBGSSIxNHY1TmRCMGRVaklXdjhzR3J1b2ZhM2xwNHQyVGp5ZHptckQycjJRWXpIZz0GOwBGSSINdHJhY2tpbmcGOwBGewZJIhRIVFRQX1VTRVJfQUdFTlQGOwBUSSItOTkxNzUyMWYzN2M4ODJkNDIyMzhmYmI5Yzg4MzFmMWVmNTAwNGQyYwY7AEY%3D--02184e43850f38a46c8f22ffb49f7f22be58e272'
+        end
+
+        it "must return a #{described_class} object" do
+          expect(subject).to be_kind_of(described_class)
+        end
+
+        it "must decode and deserialize the session params" do
+          expect(subject.params.keys).to eq(params.keys)
+          expect(subject.params['session_id'].public_id).to eq(params['session_id'].public_id)
+          expect(subject.params['csrf']).to eq(params['csrf'])
+          expect(subject.params['tracking']).to eq(params['tracking'])
+        end
+
+        it "must parse the SHA1 HMAC" do
+          expect(subject.hmac).to eq(hmac)
+        end
+      end
+
+      context "and it contains 'rack.session=<base64>--<sha1>'" do
+        let(:cookie) do
+          'rack.session=BAh7CEkiD3Nlc3Npb25faWQGOgZFVG86HVJhY2s6OlNlc3Npb246OlNlc3Npb25JZAY6D0BwdWJsaWNfaWRJIkUyYWJkZTdkM2I0YTMxNDE5OThiYmMyYTE0YjFmMTZlNTNlMWMzYWJlYzhiYzc4ZjVhMGFlMGUwODJmMjJlZGIxBjsARkkiCWNzcmYGOwBGSSIxNHY1TmRCMGRVaklXdjhzR3J1b2ZhM2xwNHQyVGp5ZHptckQycjJRWXpIZz0GOwBGSSINdHJhY2tpbmcGOwBGewZJIhRIVFRQX1VTRVJfQUdFTlQGOwBUSSItOTkxNzUyMWYzN2M4ODJkNDIyMzhmYmI5Yzg4MzFmMWVmNTAwNGQyYwY7AEY=--02184e43850f38a46c8f22ffb49f7f22be58e272'
+        end
+
+        it "must return a #{described_class} object" do
+          expect(subject).to be_kind_of(described_class)
+        end
+
+        it "must decode and deserialize the session params" do
+          expect(subject.params.keys).to eq(params.keys)
+          expect(subject.params['session_id'].public_id).to eq(params['session_id'].public_id)
+          expect(subject.params['csrf']).to eq(params['csrf'])
+          expect(subject.params['tracking']).to eq(params['tracking'])
+        end
+
+        it "must parse the SHA1 HMAC" do
+          expect(subject.hmac).to eq(hmac)
+        end
+      end
+
+      context "and it contains 'rack.session=<uri-encoded-base64>--<sha1>'" do
+        let(:cookie) do
+          'rack.session=BAh7CEkiD3Nlc3Npb25faWQGOgZFVG86HVJhY2s6OlNlc3Npb246OlNlc3Npb25JZAY6D0BwdWJsaWNfaWRJIkUyYWJkZTdkM2I0YTMxNDE5OThiYmMyYTE0YjFmMTZlNTNlMWMzYWJlYzhiYzc4ZjVhMGFlMGUwODJmMjJlZGIxBjsARkkiCWNzcmYGOwBGSSIxNHY1TmRCMGRVaklXdjhzR3J1b2ZhM2xwNHQyVGp5ZHptckQycjJRWXpIZz0GOwBGSSINdHJhY2tpbmcGOwBGewZJIhRIVFRQX1VTRVJfQUdFTlQGOwBUSSItOTkxNzUyMWYzN2M4ODJkNDIyMzhmYmI5Yzg4MzFmMWVmNTAwNGQyYwY7AEY%3D--02184e43850f38a46c8f22ffb49f7f22be58e272'
+        end
+
+        it "must return a #{described_class} object" do
+          expect(subject).to be_kind_of(described_class)
+        end
+
+        it "must decode and deserialize the session params" do
+          expect(subject.params.keys).to eq(params.keys)
+          expect(subject.params['session_id'].public_id).to eq(params['session_id'].public_id)
+          expect(subject.params['csrf']).to eq(params['csrf'])
+          expect(subject.params['tracking']).to eq(params['tracking'])
+        end
+
+        it "must parse the SHA1 HMAC" do
+          expect(subject.hmac).to eq(hmac)
+        end
+      end
+    end
+
+    context "when the HTTP response does not contains an 'Set-Cookie' header" do
+      it "must return nil" do
+        expect(subject).to be(nil)
       end
     end
   end

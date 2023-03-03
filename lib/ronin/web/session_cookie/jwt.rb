@@ -125,6 +125,26 @@ module Ronin
           return new(header,payload,hmac)
         end
 
+        #
+        # Extracts the JWT session cookie from the HTTP response.
+        #
+        # @param [Net::HTTPResponse] response
+        #   The HTTP response object.
+        #
+        # @return [JWT, nil]
+        #   The parsed JWT session cookie, or `nil` if there was no
+        #   `Authorization` header containing a JWT session cookie.
+        #
+        # @api public
+        #
+        def self.extract(response)
+          if (authorization = response['Authorization'])
+            if (match = authorization.match(REGEXP))
+              return parse(match[0])
+            end
+          end
+        end
+
       end
     end
   end

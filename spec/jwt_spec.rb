@@ -1,6 +1,8 @@
 require 'spec_helper'
 require 'ronin/web/session_cookie/jwt'
 
+require 'net/http'
+
 describe Ronin::Web::SessionCookie::JWT do
   let(:header) do
     {"alg" => "HS256", "typ" => "JWT"}
@@ -110,6 +112,66 @@ describe Ronin::Web::SessionCookie::JWT do
 
       it "must parse the SHA1 HMAC" do
         expect(subject.hmac).to eq(hmac)
+      end
+    end
+  end
+
+  describe ".extract" do
+    let(:response) { Net::HTTPSuccess.new('1.1', '200', 'OK') }
+
+    subject { described_class.extract(response) }
+
+    context "when the HTTP response contains an 'Authorization' header" do
+      before { response['Authorization'] = cookie }
+
+      context "and it contains '<base64>.<base64>.<base64>'" do
+        let(:cookie) do
+          'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+        end
+
+        it "must return a #{described_class} object" do
+          expect(subject).to be_kind_of(described_class)
+        end
+
+        it "must decode and deserialize the header information" do
+          expect(subject.header).to eq(header)
+        end
+
+        it "must decode and deserialize the session params" do
+          expect(subject.params).to eq(params)
+        end
+
+        it "must parse the SHA1 HMAC" do
+          expect(subject.hmac).to eq(hmac)
+        end
+      end
+
+      context "and it contains 'Bearer <base64>.<base64>.<base64>'" do
+        let(:cookie) do
+          'Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiIxMjM0NTY3ODkwIiwibmFtZSI6IkpvaG4gRG9lIiwiaWF0IjoxNTE2MjM5MDIyfQ.SflKxwRJSMeKKF2QT4fwpMeJf36POk6yJV_adQssw5c'
+        end
+
+        it "must return a #{described_class} object" do
+          expect(subject).to be_kind_of(described_class)
+        end
+
+        it "must decode and deserialize the header information" do
+          expect(subject.header).to eq(header)
+        end
+
+        it "must decode and deserialize the session params" do
+          expect(subject.params).to eq(params)
+        end
+
+        it "must parse the SHA1 HMAC" do
+          expect(subject.hmac).to eq(hmac)
+        end
+      end
+    end
+
+    context "when the HTTP response does not contains an 'Authorization' header" do
+      it "must return nil" do
+        expect(subject).to be(nil)
       end
     end
   end

@@ -141,6 +141,26 @@ module Ronin
           return new(params,salt,hmac)
         end
 
+        #
+        # Extracts the Django session cookie from the HTTP response.
+        #
+        # @param [Net::HTTPResponse] response
+        #   The HTTP response object.
+        #
+        # @return [Django, nil]
+        #   The parsed Django session cookie, or `nil` if there was no
+        #   `Set-Cookie` header containing a Django session cookie.
+        #
+        # @api public
+        #
+        def self.extract(response)
+          if (set_cookie = response['Set-Cookie'])
+            if (match = set_cookie.match(REGEXP))
+              return parse(match[0])
+            end
+          end
+        end
+
       end
     end
   end

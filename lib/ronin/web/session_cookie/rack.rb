@@ -103,6 +103,26 @@ module Ronin
           return new(Marshal.load(Base64.decode64(payload)),hmac)
         end
 
+        #
+        # Extracts the Rack session cookie from the HTTP response.
+        #
+        # @param [Net::HTTPResponse] response
+        #   The HTTP response object.
+        #
+        # @return [Rack, nil]
+        #   The parsed Rack session cookie, or `nil` if there was no
+        #   `Set-Cookie` header containing a Rack session cookie.
+        #
+        # @api public
+        #
+        def self.extract(response)
+          if (set_cookie = response['Set-Cookie'])
+            if (match = set_cookie.match(REGEXP))
+              return parse(match[0])
+            end
+          end
+        end
+
       end
     end
   end

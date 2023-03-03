@@ -57,6 +57,28 @@ module Ronin
 
         return nil
       end
+
+      #
+      # Extracts and parses the session cookie from the HTTP response.
+      #
+      # @param [Net::HTTPResponse] response
+      #   The HTTP response object.
+      #
+      # @return [Cookie, nil]
+      #   The parsed session cookie or `nil` if no session cookie could be
+      #   detected.
+      #
+      # @api public
+      #
+      def self.extract(response)
+        CLASSES.each do |klass|
+          if (session_cookie = klass.extract(response))
+            return session_cookie
+          end
+        end
+
+        return nil
+      end
     end
   end
 end
