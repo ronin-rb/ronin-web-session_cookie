@@ -22,6 +22,7 @@ session cookie formats. It supports Rack, Django (JSON and Pickled), and JWT.
   * [Rack][rack-session]
   * [Django]
   * [JSON Web Token (JWT)][JWT]
+* Has 98% test coverage.
 
 ## Examples
 
