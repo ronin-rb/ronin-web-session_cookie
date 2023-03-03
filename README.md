@@ -80,8 +80,8 @@ Ronin::Web::SessionCookie.parse('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOi
 ## Requirements
 
 * [Ruby] >= 3.0.0
-* [ronin-support] ~> 1.1
-* [rack-session] ~> 2.0
+* [ronin-support] ~> 1.0
+* [rack-session] ~> 1.0
 * [python-pickle] ~> 0.1
 
 ## Install
