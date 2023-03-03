@@ -56,7 +56,7 @@ module Ronin
 
         # The salt used to sign the cookie.
         #
-        # @return [String]
+        # @return [Integer]
         #
         # @api public
         attr_reader :salt
@@ -77,7 +77,7 @@ module Ronin
         # @param [Integer] salt
         #   The Base62 decoded timestamp that is used to salt the HMAC.
         #
-        # @param [String] hmac
+        # @param [Integer] hmac
         #   The SHA256 HMAC of the Base64 encoded serialized  {#params}.
         #
         # @api private
