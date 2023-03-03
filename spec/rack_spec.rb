@@ -171,7 +171,7 @@ describe Ronin::Web::SessionCookie::Rack do
     subject { described_class.extract(response) }
 
     context "when the HTTP response contains an 'Set-Cookie' header" do
-      before { response['Set-Cookie'] = cookie }
+      before { response['Set-Cookie'] = "#{cookie}; path=/; HttpOnly" }
 
       context "and it contains '<base64>--<sha1>'" do
         let(:cookie) do
