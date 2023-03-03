@@ -64,7 +64,7 @@ module Ronin
       # @param [Net::HTTPResponse] response
       #   The HTTP response object.
       #
-      # @return [Cookie, nil]
+      # @return [Rack, Django, JWT, nil]
       #   The parsed session cookie or `nil` if no session cookie could be
       #   detected.
       #
