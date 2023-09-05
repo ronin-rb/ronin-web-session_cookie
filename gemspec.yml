@@ -1,5 +1,5 @@
 name: ronin-web-session_cookie
-summary: A library for parsing and deserializing various session cookies
+summary: A library for parsing and deserializing various session cookies.
 description: |
   ronin-web-session_cookie is a library for parsing and deserializing various
   session cookie formats. It supports Rack, Django, and JWT.
