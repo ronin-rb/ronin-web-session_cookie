@@ -4,7 +4,7 @@ description: |
   ronin-web-session_cookie is a library for parsing and deserializing various
   session cookie formats. It supports Rack, Django (JSON and Pickled), and JWT.
 
-license: LGPL-3.0
+license: LGPL-3.0-or-later
 authors: Postmodern
 email: postmodern.mod3@gmail.com
 homepage: https://ronin-rb.dev/
