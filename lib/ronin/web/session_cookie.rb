@@ -16,9 +16,9 @@
 # along with ronin-web-session_cookie.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/web/session_cookie/rack'
-require 'ronin/web/session_cookie/django'
-require 'ronin/web/session_cookie/jwt'
+require_relative 'session_cookie/rack'
+require_relative 'session_cookie/django'
+require_relative 'session_cookie/jwt'
 
 module Ronin
   module Web

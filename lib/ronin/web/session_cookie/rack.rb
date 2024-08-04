@@ -16,7 +16,7 @@
 # along with ronin-web-session_cookie.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/web/session_cookie/cookie'
+require_relative 'cookie'
 
 require 'base64'
 require 'delegate'

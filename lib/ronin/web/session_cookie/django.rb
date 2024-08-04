@@ -16,10 +16,10 @@
 # along with ronin-web-session_cookie.  If not, see <https://www.gnu.org/licenses/>.
 #
 
-require 'ronin/web/session_cookie/cookie'
+require_relative 'cookie'
+
 require 'ronin/support/encoding/base64'
 require 'ronin/support/encoding/base62'
-
 require 'python/pickle'
 
 module Ronin
