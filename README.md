@@ -79,6 +79,7 @@ Ronin::Web::SessionCookie.parse('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOi
 ## Requirements
 
 * [Ruby] >= 3.0.0
+* [base64] ~> 0.1
 * [rack-session] ~> 1.0
 * [python-pickle] ~> 0.1
 * [ronin-support] ~> 1.0
@@ -130,6 +131,7 @@ You should have received a copy of the GNU Lesser General Public License
 along with ronin-web-session_cookie.  If not, see <https://www.gnu.org/licenses/>.
 
 [Ruby]: https://www.ruby-lang.org
+[base64]: https://github.com/ruby/base64#readme
 [rack-session]: https://github.com/rack/rack-session
 [python-pickle]: https://github.com/postmodern/python-pickle#readme
 [ronin-support]: https://github.com/ronin-rb/ronin-support#readme
