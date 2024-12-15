@@ -79,9 +79,9 @@ Ronin::Web::SessionCookie.parse('eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOi
 ## Requirements
 
 * [Ruby] >= 3.0.0
-* [ronin-support] ~> 1.0
 * [rack-session] ~> 1.0
 * [python-pickle] ~> 0.1
+* [ronin-support] ~> 1.0
 
 ## Install
 
@@ -130,8 +130,8 @@ You should have received a copy of the GNU Lesser General Public License
 along with ronin-web-session_cookie.  If not, see <https://www.gnu.org/licenses/>.
 
 [Ruby]: https://www.ruby-lang.org
-[ronin-support]: https://github.com/ronin-rb/ronin-support#readme
 [rack-session]: https://github.com/rack/rack-session
 [python-pickle]: https://github.com/postmodern/python-pickle#readme
+[ronin-support]: https://github.com/ronin-rb/ronin-support#readme
 [Django]: https://docs.djangoproject.com/en/4.1/topics/http/sessions/#using-cookie-based-sessions
 [JWT]: https://jwt.io

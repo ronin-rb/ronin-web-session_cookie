@@ -20,10 +20,10 @@ metadata:
 required_ruby_version: ">= 3.0.0"
 
 dependencies:
-  # Ronin dependencies:
-  ronin-support: ~> 1.1
   rack-session: ~> 1.0
   python-pickle: ~> 0.1
+  # Ronin dependencies:
+  ronin-support: ~> 1.1
 
 development_dependencies:
   bundler: ~> 2.0
