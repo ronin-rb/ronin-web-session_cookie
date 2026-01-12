@@ -27,4 +27,4 @@ dependencies:
   ronin-support: ~> 1.1
 
 development_dependencies:
-  bundler: ~> 2.0
+  bundler: ">= 2.0.0"
